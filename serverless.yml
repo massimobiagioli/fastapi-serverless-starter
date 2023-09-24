@@ -1,0 +1,28 @@
+service: fastapi-serverless-starter
+package:
+  individually: true
+provider:
+  name: aws
+  profile: ${opt:aws-profile, "default"}
+  stage: ${opt:stage, "dev"}
+  runtime: python3.9
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    usePoetry: true
+
+functions:
+  app:
+    handler: app.lambda.handler
+    events:
+      - http:
+          method: get
+          path: /
+      - http:
+          method: any
+          path: /{proxy+}
