@@ -32,10 +32,11 @@ pip install \
     -t "$layer_dir/python" \
     -q
 
+rm "$requirements_file"
+
 cd "$layer_dir"
 zip -r "$layer_name.zip" . -q
 mv "$layer_name.zip" "../$layer_name.zip"
 rm -rf "../$layer_name"
-rm "../requirements.txt"
 
 jq -n --arg filename "$filename" '{"filename":$filename}'
