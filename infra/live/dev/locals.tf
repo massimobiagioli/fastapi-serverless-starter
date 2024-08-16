@@ -1,6 +1,6 @@
 locals {
   app = {
-    name        = "fastapi-sls-starter-${var.stage}"
+    name        = "fastapi-starter-${var.stage}"
     description = "FastAPI Serverless Starter application"
   }
 
