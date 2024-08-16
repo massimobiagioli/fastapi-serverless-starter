@@ -33,11 +33,14 @@ pre-commit-install: # Install pre-commit hooks
 pre-commit: # Run pre-commit hooks
 	poetry run pre-commit
 
+terraform-fmt: # Format terraform
+	cd infra/live/${stage} && terraform fmt -recursive
+
 terraform-init: # Initialize terraform
 	cd infra/live/${stage} && terraform init
 
-terraform-fmt: # Format terraform
-	cd infra/live/${stage} && terraform fmt -recursive
+terraform-plan: # Format terraform
+	cd infra/live/${stage} && terraform plan -var "stage=${stage}" -var "region=${region}"
 
 terraform-apply: # Apply terraform
 	cd infra/live/${stage} && terraform apply -auto-approve -var "stage=${stage}" -var "region=${region}"
