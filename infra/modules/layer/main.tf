@@ -17,6 +17,7 @@ resource "aws_s3_object" "layer_zip" {
   key           = local.layer_s3_key
   source        = local.filename
   force_destroy = true
+  etag          = filebase64sha256(local.pyproject_toml)
   depends_on    = [data.external.layer, aws_s3_bucket_versioning.layer_versioning]
 
   tags = var.tags
