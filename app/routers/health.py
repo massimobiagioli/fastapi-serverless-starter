@@ -5,8 +5,13 @@ router = APIRouter()
 
 
 @router.get("/health")
-async def health():
+async def health():    
+    return {"status": "ok"}
+
+
+@router.get("/fake")
+async def fake():
     fake = Faker()
     name = fake.name()
     
-    return {"status": "ok", "name": name}
+    return {"name": name}
