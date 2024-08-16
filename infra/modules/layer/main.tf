@@ -27,7 +27,7 @@ resource "aws_lambda_layer_version" "lambda_layer" {
   layer_name          = var.name
   compatible_runtimes = local.compatible_runtimes
   description         = var.description
-  skip_destroy        = true
+  # skip_destroy        = true
   depends_on          = [aws_s3_object.layer_zip]
   source_code_hash    = filebase64sha256(local.pyproject_toml)
 }
