@@ -4,11 +4,19 @@ resource "aws_s3_bucket" "layer" {
   tags = var.tags
 }
 
+resource "aws_s3_bucket_versioning" "layer_versioning" {
+  bucket = aws_s3_bucket.layer.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_object" "layer_zip" {
   bucket     = aws_s3_bucket.layer.id
   key        = local.layer_s3_key
   source     = local.filename
-  depends_on = [data.external.layer]
+  depends_on = [data.external.layer, aws_s3_bucket_versioning.layer_versioning]
 
   tags = var.tags
 }

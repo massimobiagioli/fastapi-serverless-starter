@@ -13,7 +13,7 @@ locals {
 
   layer = {
     dependencies = {
-      name        = "fastapi-sls-starter-${var.stage}-dependencies"
+      name        = "fastapi-starter-${var.stage}-dependencies"
       description = "FastAPI Serverless Starter Dependencies Layer"
       build_dir   = "../../build/layers"
     }
