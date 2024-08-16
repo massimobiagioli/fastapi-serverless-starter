@@ -43,4 +43,4 @@ terraform-plan: # Format terraform
 	cd infra/live/${stage} && terraform plan -var "stage=${stage}" -var "region=${region}" -out=tfplan
 
 terraform-apply: # Apply terraform
-	cd infra/live/${stage} && terraform apply -auto-approve -var "stage=${stage}" -var "region=${region}" tfplan
+	cd infra/live/${stage} && terraform apply -auto-approve tfplan
